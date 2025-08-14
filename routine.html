@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-en="Routine - Abdullah Fahim" data-bn="রুটিন - আব্দুল্লাহ ফাহিম">Routine - Abdullah Fahim</title>
+    <link rel="manifest" href="/manifest.json">
+    <link rel="icon" href="/logo.png" type="image/png">
+    <style>
+        :root {
+            --primary-color: #6366f1;
+            --secondary-color: #e949b8;
+            --accent-color: #10b981;
+            --text-color: #1f2937;
+            --bg-color: #f8fafc;
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --border-color: rgba(226, 232, 240, 0.8);
+            --dark-text-color: #f1f5f9;
+            --dark-bg-color: #0f172a;
+            --dark-card-bg: rgba(30, 41, 59, 0.95);
+            --dark-border-color: rgba(71, 85, 105, 0.8);
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+
+        /* Dark mode variables (if you implement dark mode later) */
+        .dark {
+            --text-color: var(--dark-text-color);
+            --bg-color: var(--dark-bg-color);
+            --card-bg: var(--dark-card-bg);
+            --border-color: var(--dark-border-color);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .enhanced-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #f5576c, #4facfe, #00f2fe);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+        }
+
+        .enhanced-background::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 40% 60%, rgba(99, 102, 241, 0.15) 0%, transparent 50%), radial-gradient(circle at 60% 40%, rgba(233, 73, 184, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(16, 185, 129, 0.15) 0%, transparent 50%);
+            animation: float 25s ease-in-out infinite;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            25% { transform: translateY(-20px) rotate(90deg); }
+            50% { transform: translateY(-40px) rotate(180deg); }
+            75% { transform: translateY(-20px) rotate(270deg); }
+        }
+
+        /* Header styles */
+        .header {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .header.scrolled {
+            box-shadow: var(--shadow-md);
+        }
+
+        .header .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--text-color);
+            font-weight: 700;
+            font-size: 1.3rem;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-link:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+        }
+
+        .nav-list {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-list a {
+            color: var(--text-color);
+            font-weight: 600;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-list a:hover {
+            color: var(--primary-color);
+            background: rgba(99, 102, 241, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .nav-list a.active {
+            color: var(--primary-color);
+            background: rgba(99, 102, 241, 0.15);
+        }
+
+        .lang-toggle {
+            background: none;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 0.5rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lang-toggle:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .hamburger-menu {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--text-color);
+        }
+
+        /* Main content */
+        .main-content {
+            padding: 6rem 2rem 2rem;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .page-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .page-title h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .page-title p {
+            font-size: 1.2rem;
+            color: #64748b;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Routine cards */
+        .routine-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .routine-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border-radius: 2rem;
+            padding: 2.5rem;
+            box-shadow: var(--shadow-xl);
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .routine-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, rgba(99, 102, 241, 0.05), transparent, rgba(233, 73, 184, 0.05), transparent);
+            animation: rotate 20s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes rotate {
+            100% { transform: rotate(360deg); }
+        }
+
+        .routine-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.15);
+        }
+
+        .routine-card-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .routine-card-title::after {
+            content: '';
+            position: absolute;
+            bottom: -0.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 2px;
+        }
+
+        .routine-subsection {
+            margin-bottom: 2rem;
+        }
+
+        .routine-subsection:last-child {
+            margin-bottom: 0;
+        }
+
+        .subsection-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        /* Enhanced marquee */
+        .marquee-container {
+            width: 100%;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(233, 73, 184, 0.1));
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            border-radius: 1rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            position: relative;
+        }
+
+        .marquee-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .marquee-text {
+            display: inline-block;
+            padding-left: 100%;
+            animation: marquee-rtl 15s linear infinite;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            white-space: nowrap;
+        }
+
+        @keyframes marquee-rtl {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* Schedule list */
+        .routine-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .routine-list li {
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 0.75rem;
+            border-left: 4px solid var(--primary-color);
+            transition: all 0.3s ease;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .routine-list li::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(233, 73, 184, 0.1));
+            transition: width 0.3s ease;
+            z-index: -1;
+        }
+
+        .routine-list li:hover {
+            transform: translateX(10px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .routine-list li:hover::before {
+            width: 100%;
+        }
+
+        .routine-list li:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Today's highlight */
+        .today-highlight {
+            background: linear-gradient(135deg, var(--accent-color), #059669);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .today-highlight::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: rotate 10s linear infinite;
+        }
+
+        .today-highlight h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .today-highlight p {
+            position: relative;
+            z-index: 1;
+            opacity: 0.9;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .hamburger-menu {
+                display: block;
+            }
+            .nav-list {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: var(--card-bg);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 2rem 0;
+                transform: translateY(-100%);
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
+                box-shadow: var(--shadow-lg);
+            }
+            .nav-list.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+            .page-title h1 {
+                font-size: 2.5rem;
+            }
+            .routine-grid {
+                grid-template-columns: 1fr;
+            }
+            .routine-card {
+                padding: 2rem 1.5rem;
+            }
+            .main-content {
+                padding: 5rem 1rem 2rem;
+            }
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+    </style>
+    <script type="module">
+        // Same Firebase configuration and auth logic
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+        import { getAuth, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyATmWaWHeOIPuKEz11YbHkdo2qasNUr9z8",
+            authDomain: "my-auth-app-e937e.firebaseapp.com",
+            projectId: "my-auth-app-e937e",
+            storageBucket: "my-auth-app-e937e.firebasestorage.app",
+            messagingSenderId: "731924153817",
+            appId: "1:731924153817:web:5370d74f068d20745345c8",
+            measurementId: "G-R13JTXH4Z8"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                displayUserProfile(user);
+            } else {
+                window.location.href = 'index.html';
+            }
+        });
+
+        function displayUserProfile(user) {
+            const userProfile = document.getElementById('userProfile');
+            if (userProfile) {
+                userProfile.innerHTML = `
+                    <div class="flex items-center space-x-3">
+                        <img src="${user.photoURL || `https://ui-avatars.com/api/?name=${encodeURIComponent(user.displayName || user.email)}&background=6366f1&color=fff`}" 
+                             alt="Profile" class="w-8 h-8 rounded-full">
+                        <span class="text-white font-medium">${user.displayName || user.email}</span>
+                        <div class="relative">
+                            <button onclick="toggleProfileMenu()" class="text-white hover:text-gray-300">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                </svg>
+                            </button>
+                            <div id="profileMenu" class="hidden absolute right-0 mt-2 w-48 bg-black/80 backdrop-blur-sm rounded-lg shadow-lg border border-white/10">
+                                <button onclick="handleSignOut()" class="w-full text-left px-4 py-2 text-white hover:bg-white/10 rounded-lg">
+                                    Sign Out
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        window.toggleProfileMenu = function() {
+            const menu = document.getElementById('profileMenu');
+            menu.classList.toggle('hidden');
+        };
+
+        window.handleSignOut = async function() {
+            try {
+                await signOut(auth);
+                window.location.href = 'index.html';
+            } catch (error) {
+                console.error('Sign out error:', error);
+            }
+        };
+    </script>
+</head>
+<body>
+    <nav class="fixed top-0 w-full bg-black/20 backdrop-blur-sm border-b border-white/10 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-8">
+                    <a href="home.html" class="text-white font-bold text-xl">Abdullah Fahim</a>
+                    <div class="hidden md:flex space-x-6">
+                        <a href="home.html" class="text-white hover:text-gray-300">Home</a>
+                        <a href="gallery.html" class="text-white hover:text-gray-300">Gallery</a>
+                        <a href="routine.html" class="text-white hover:text-gray-300">Routine</a>
+                        <a href="contact.html" class="text-white hover:text-gray-300">Contact</a>
+                    </div>
+                </div>
+                <div id="userProfile" class="flex items-center">
+                    <!-- User profile will be inserted here -->
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="enhanced-background"></div>
+    <header class="header" id="header">
+        <div class="container">
+            <a href="index.html" class="logo-link">
+                <img src="https://i.ibb.co.com/4RwDKSd1/A-removebg-preview.png" alt="Logo" class="logo-img">
+                <span class="logo-text">Abdullah Fahim</span>
+            </a>
+            <nav class="nav-menu">
+                <button class="hamburger-menu" id="hamburger" aria-label="Toggle navigation menu">
+                    ☰
+                </button>
+                <ul class="nav-list" id="navList">
+                    <li><a href="index.html" data-en="Home" data-bn="হোম">Home</a></li>
+                    <li><a href="gallery.html" data-en="Gallery" data-bn="গ্যালারি">Gallery</a></li>
+                    <li><a href="contact.html" data-en="Contact" data-bn="যোগাযোগ">Contact</a></li>
+                    <li><a href="routine.html" class="active" data-en="Routine" data-bn="রুটিন">Routine</a></li>
+                    <li>
+                        <button class="lang-toggle" id="langToggle" aria-label="Toggle language">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/>
+                                <path d="M2 12h20"/>
+                            </svg>
+                            <span class="sr-only">Toggle Language</span>
+                        </button>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main class="main-content">
+        <div class="container">
+            <div class="page-title">
+                <h1 data-en="My Routine" data-bn="আমার রুটিন">My Routine</h1>
+                <p data-en="My daily class schedule and coaching routine" data-bn="আমার দৈনিক ক্লাসের সময়সূচী এবং কোচিং রুটিন">My daily class schedule and coaching routine</p>
+            </div>
+            <div class="today-highlight" id="todayHighlight">
+                <h3 data-en="Today's Schedule" data-bn="আজকের সময়সূচী">Today's Schedule</h3>
+                <p id="todayScheduleText"></p>
+            </div>
+            <div class="routine-grid">
+                <div class="routine-card">
+                    <h2 class="routine-card-title" data-en="Monjur Hossain Coaching Center" data-bn="Monjur Hossain Coaching Center">Monjur Hossain Coaching Center</h2>
+                    <div class="routine-subsection">
+                        <h3 class="subsection-title" data-en="Math" data-bn="গণিত">Math</h3>
+                        <div class="marquee-container">
+                            <p class="marquee-text" id="math-tomorrow-banner"></p>
+                        </div>
+                        <ul class="routine-list">
+                            <li data-en="Friday - OFF" data-bn="শুক্রবার - বন্ধ">Friday - OFF</li>
+                            <li data-en="Saturday - 7:00 A.M." data-bn="শনিবার - সকাল ৭:০০">Saturday - 7:00 A.M.</li>
+                            <li data-en="Sunday - OFF" data-bn="রবিবার - বন্ধ">Sunday - OFF</li>
+                            <li data-en="Monday - 7:00 A.M." data-bn="সোমবার - সকাল ৭:০০">Monday - 7:00 A.M.</li>
+                            <li data-en="Tuesday - OFF" data-bn="মঙ্গলবার - বন্ধ">Tuesday - OFF</li>
+                            <li data-en="Wednesday - 7:00 A.M." data-bn="বুধবার - সকাল ৭:০০">Wednesday - 7:00 A.M.</li>
+                            <li data-en="Thursday - 7:00 A.M." data-bn="বৃহস্পতিবার - সকাল ৭:০০">Thursday - 7:00 A.M.</li>
+                        </ul>
+                    </div>
+                    <div class="routine-subsection">
+                        <h3 class="subsection-title" data-en="Group Subjects" data-bn="গ্রুপ বিষয়">Group Subjects</h3>
+                        <div class="marquee-container">
+                            <p class="marquee-text" id="group-tomorrow-banner"></p>
+                        </div>
+                        <ul class="routine-list">
+                            <li data-en="Friday - 8:40 A.M." data-bn="শুক্রবার - সকাল ৮:৪০">Friday - 8:40 A.M.</li>
+                            <li data-en="Saturday - 7:40 A.M." data-bn="শনিবার - সকাল ৭:৪০">Saturday - 7:40 A.M.</li>
+                            <li data-en="Sunday - OFF" data-bn="রবিবার - বন্ধ">Sunday - OFF</li>
+                            <li data-en="Monday - 7:40 A.M." data-bn="সোমবার - সকাল ৭:৪০">Monday - 7:40 A.M.</li>
+                            <li data-en="Tuesday - 9:10 A.M." data-bn="মঙ্গলবার - সকাল ৯:১০">Tuesday - 9:10 A.M.</li>
+                            <li data-en="Wednesday - 7:40 A.M." data-bn="বুধবার - সকাল ৭:৪০">Wednesday - 7:40 A.M.</li>
+                            <li data-en="Thursday - 7:40 A.M." data-bn="বৃহস্পতিবার - সকাল ৭:৪০">Thursday - 7:40 A.M.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="routine-card">
+                    <h2 class="routine-card-title" data-en="English Coaching (Mr. Partha Chandra Ascharjee)" data-bn="ইংরেজি কোচিং (Partha Chandra Ascharjee Coaching Center)">English Coaching (Mr. Partha Chandra Ascharjee)</h2>
+                    <div class="marquee-container">
+                        <p class="marquee-text" id="english-tomorrow-banner"></p>
+                    </div>
+                    <ul class="routine-list">
+                        <li data-en="Friday - OFF" data-bn="শুক্রবার - বন্ধ">Friday - OFF</li>
+                        <li data-en="Saturday - 10:00 A.M." data-bn="শনিবার - সকাল ১০:০০">Saturday - 10:00 A.M.</li>
+                        <li data-en="Sunday - OFF" data-bn="রবিবার - বন্ধ">Sunday - OFF</li>
+                        <li data-en="Monday - 9:00 A.M." data-bn="সোমবার - সকাল ৯:০০">Monday - 9:00 A.M.</li>
+                        <li data-en="Tuesday - OFF" data-bn="মঙ্গলবার - বন্ধ">Tuesday - OFF</li>
+                        <li data-en="Wednesday - 9:00 A.M." data-bn="বুধবার - সকাল ৯:০০">Wednesday - 9:00 A.M.</li>
+                        <li data-en="Thursday - 10:00 A.M." data-bn="বৃহস্পতিবার - সকাল ১০:০০">Thursday - 10:00 A.M.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Header scroll effect
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 0) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            // Mobile menu functionality
+            const hamburger = document.getElementById('hamburger');
+            const navList = document.getElementById('navList');
+            hamburger.addEventListener('click', () => {
+                navList.classList.toggle('active');
+            });
+
+            // Language toggle functionality
+            const langToggle = document.getElementById('langToggle');
+            let currentLanguage = localStorage.getItem('language') || 'en';
+
+            const routineData = {
+                en: {
+                    days: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+                    math: {
+                        0: 'OFF', 1: '7:00 A.M.', 2: 'OFF', 3: '7:00 A.M.', 4: '7:00 A.M.', 5: '9:20 A.M.', 6: '7:00 A.M.'
+                    },
+                    group: {
+                        0: 'OFF', 1: '7:40 A.M.', 2: '9:10 A.M.', 3: '7:40 A.M.', 4: '7:40 A.M.', 5: '8:25 A.M.', 6: '7:40 A.M.'
+                    },
+                    english: {
+                        0: 'OFF', 1: '9:00 A.M.', 2: 'OFF', 3: '9:00 A.M.', 4: '10:00 A.M.', 5: '10:00 A.M.', 6: '9:00 A.M.'
+                    }
+                },
+                bn: {
+                    days: ['রবিবার', 'সোমবার', 'মঙ্গলবার', 'বুধবার', 'বৃহস্পতিবার', 'শুক্রবার', 'শনিবার'],
+                    math: {
+                        0: 'বন্ধ', 1: 'সকাল ৭:০০', 2: 'বন্ধ', 3: 'সকাল ৭:০০', 4: 'সকাল ৭:০০', 5: 'সকাল ৯:২০', 6: 'সকাল ৭:০০'
+                    },
+                    group: {
+                        0: 'বন্ধ', 1: 'সকাল ৭:৪০', 2: 'সকাল ৯:১০', 3: 'সকাল ৭:৪০', 4: 'সকাল ৭:৪০', 5: 'সকাল ৮:২৫', 6: 'সকাল ৭:৪০'
+                    },
+                    english: {
+                        0: 'বন্ধ', 1: 'সকাল ৯:০০', 2: 'বন্ধ', 3: 'সকাল ৯:০০', 4: 'সকাল ১০:০০', 5: 'সকাল ১০:০০', 6: 'সকাল ৯:০০'
+                    }
+                }
+            };
+
+            function updateTexts() {
+                document.querySelectorAll('[data-en]').forEach(element => {
+                    const enText = element.getAttribute('data-en');
+                    const bnText = element.getAttribute('data-bn');
+                    element.textContent = currentLanguage === 'en' ? enText : bnText;
+                });
+
+                const titleElement = document.querySelector('title');
+                if (titleElement) {
+                    const enTitle = titleElement.getAttribute('data-en');
+                    const bnTitle = titleElement.getAttribute('data-bn');
+                    titleElement.textContent = currentLanguage === 'en' ? enTitle : bnTitle;
+                }
+                updateRoutineBanners();
+                updateTodaySchedule();
+            }
+
+            langToggle.addEventListener('click', () => {
+                currentLanguage = currentLanguage === 'en' ? 'bn' : 'en';
+                localStorage.setItem('language', currentLanguage);
+                updateTexts();
+            });
+
+            // Routine functionality
+            function updateRoutineBanners() {
+                const today = new Date();
+                const tomorrow = new Date(today);
+                tomorrow.setDate(today.getDate() + 1);
+                const tomorrowDayIndex = tomorrow.getDay();
+                const langData = routineData[currentLanguage];
+
+                const tomorrowDayName = langData.days[tomorrowDayIndex];
+                const mathTime = langData.math[tomorrowDayIndex];
+                const groupTime = langData.group[tomorrowDayIndex];
+                const englishTime = langData.english[tomorrowDayIndex];
+
+                const mathBanner = document.getElementById('math-tomorrow-banner');
+                const groupBanner = document.getElementById('group-tomorrow-banner');
+                const englishBanner = document.getElementById('english-tomorrow-banner');
+
+                if (mathBanner) {
+                    mathBanner.textContent = currentLanguage === 'en' ? `Tomorrow (${tomorrowDayName}) Math Coaching will be at ${mathTime}` : `আগামীকাল (${tomorrowDayName}) গণিত কোচিং হবে ${mathTime} টায়`;
+                }
+                if (groupBanner) {
+                    groupBanner.textContent = currentLanguage === 'en' ? `Tomorrow (${tomorrowDayName}) Group Subjects Coaching will be at ${groupTime}` : `আগামীকাল (${tomorrowDayName}) গ্রুপ বিষয় কোচিং হবে ${groupTime} টায়`;
+                }
+                if (englishBanner) {
+                    englishBanner.textContent = currentLanguage === 'en' ? `Tomorrow (${tomorrowDayName}) English Coaching will be at ${englishTime}` : `আগামীকাল (${tomorrowDayName}) ইংরেজি কোচিং হবে ${englishTime} টায়`;
+                }
+            }
+
+            function updateTodaySchedule() {
+                const today = new Date();
+                const todayIndex = today.getDay();
+                const langData = routineData[currentLanguage];
+
+                const todayName = langData.days[todayIndex];
+                const mathTime = langData.math[todayIndex];
+                const groupTime = langData.group[todayIndex];
+                const englishTime = langData.english[todayIndex];
+
+                const scheduleText = document.getElementById('todayScheduleText');
+                if (scheduleText) {
+                    if (currentLanguage === 'en') {
+                        scheduleText.innerHTML = `Today is ${todayName}<br>Math: ${mathTime} | Group: ${groupTime} | English: ${englishTime}`;
+                    } else {
+                        scheduleText.innerHTML = `আজ ${todayName}<br>গণিত: ${mathTime} | গ্রুপ: ${groupTime} | ইংরেজি: ${englishTime}`;
+                    }
+                }
+            }
+
+            // Initial updates
+            updateTexts(); // Call this first to set initial language and then update banners/schedule
+        });
+    </script>
+</body>
+</html>
